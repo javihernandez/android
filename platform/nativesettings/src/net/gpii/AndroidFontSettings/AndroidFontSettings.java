@@ -9,4 +9,6 @@ public abstract class AndroidFontSettings extends Base {
 	
 	public abstract void setFontSize(double size);
 	public abstract double getFontSize();
+	public abstract void setSystemLanguage();
+	public abstract String getSystemLanguage();
 }

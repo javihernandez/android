@@ -5,6 +5,7 @@ import org.meshpoint.anode.AndroidContext;
 import android.util.Log;
 import android.content.Context;
 import android.provider.Settings;
+import android.media.AudioManager;
 
 import org.meshpoint.anode.module.IModule;
 import org.meshpoint.anode.module.IModuleContext;
@@ -14,6 +15,7 @@ public class AndroidSettingsImpl extends AndroidSettings implements IModule {
 
     IModuleContext ctx;
     private Context androidContext;
+    private AudioManager audioMangr;
 
     @Override
     public Object startModule(IModuleContext ctx) {
@@ -21,6 +23,7 @@ public class AndroidSettingsImpl extends AndroidSettings implements IModule {
         try {
             this.ctx = ctx;
             androidContext = ((AndroidContext) ctx).getAndroidContext();
+	    audioMangr = (AudioManager) androidContext.getSystemService(Context.AUDIO_SERVICE);
         }
         catch (Exception e) {
             Log.v(TAG, "AndroidSettingsImpl error starting module: " + e);
@@ -44,6 +47,9 @@ public class AndroidSettingsImpl extends AndroidSettings implements IModule {
             value = Settings.System.getString(androidContext.getContentResolver(), setting);
         } else if (settingType.contains("Global")) {
             value = Settings.Global.getString(androidContext.getContentResolver(), setting);
+	} else if (settingType.contains("AudioManager")) {
+	    int valueaud = audioMangr.getStreamVolume(AudioManager.STREAM_SYSTEM);
+	    value = Integer.toString(valueaud);		
         } else {
             Log.e(TAG, "We haven't implemented this type yet: " + settingType);
         }
@@ -54,18 +60,25 @@ public class AndroidSettingsImpl extends AndroidSettings implements IModule {
     @Override
     public Boolean set(String settingType, String setting, String value) {
         Log.v(TAG, "AndroidSettingsImpl.set: " + setting + " to " + value);
-
-        Boolean result = false;
-        if (settingType.contains("Secure")) {
-            result = Settings.Secure.putString(androidContext.getContentResolver(), setting, value);
-        } else if (settingType.contains("System")) {
-            result = Settings.System.putString(androidContext.getContentResolver(), setting, value);
-        } else if (settingType.contains("Global")) {
-            result = Settings.Global.putString(androidContext.getContentResolver(), setting, value);
-        } else {
-            Log.e(TAG, "We haven't implemented this type yet: " + settingType);
-        }
-
+	Boolean result = false;
+	try{
+		if (settingType.contains("Secure")) {
+		    result = Settings.Secure.putString(androidContext.getContentResolver(), setting, value);
+		} else if (settingType.contains("System")) {
+		    result = Settings.System.putString(androidContext.getContentResolver(), setting, value);
+		} else if (settingType.contains("Global")) {
+		    result = Settings.Global.putString(androidContext.getContentResolver(), setting, value);
+		} else if (settingType.contains("AudioManager")) {
+		   // int settingaud = Integer.parseInt(setting);
+		    int valueaud = Integer.parseInt(value);
+		    audioMangr.setStreamVolume(AudioManager.STREAM_SYSTEM, valueaud,0);
+		    return true;
+		} else {
+		    Log.e(TAG, "We haven't implemented this type yet: " + settingType);
+		}
+	}catch(Exception e){
+		e.printStackTrace();
+	}
         return result;
     }
 }
