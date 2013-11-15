@@ -7,11 +7,13 @@ import org.meshpoint.anode.module.IModuleContext;
 import android.os.RemoteException;
 import android.content.res.Configuration;
 import java.lang.reflect.Method;
+import java.util.Locale;
 
 public class AndroidFontSettingsImpl extends AndroidFontSettings implements IModule {
     private static final String TAG = "net.gpii.AndroidFontSettingsImpl";
     private final Configuration mFontDemoConfig = new Configuration();
     private Object nativeActivityManager;
+    private Locale mlocale;
 
     @Override
     public Object startModule(IModuleContext ctx) {
@@ -55,10 +57,24 @@ public class AndroidFontSettingsImpl extends AndroidFontSettings implements IMod
         // }
     }
 
+	
+    public void setSystemLanguage() {
+	mlocale = new Locale("en_US");
+	Locale.setDefault(mlocale);
+	mFontDemoConfig.locale = mlocale;
+	updatePersistentConfiguration(mFontDemoConfig);
+    }
+
+
     @Override
     public double getFontSize() {
         Log.v(TAG, "AndroidFontSettingsImpl.getFontSize");
         return 0;
+    }
+
+    public String getSystemLanguage(){
+	Log.v(TAG, "AndroidFontSettingsImpl.getSystemLanguage");
+	return "fr_FR";
     }
 
 }
