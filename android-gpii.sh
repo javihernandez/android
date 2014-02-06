@@ -66,6 +66,7 @@ function gpii-install-gpii {
     mkdir -p build/gpii/node_modules
     cd build
     cp -R $android_gpii_dir/node_modules ./gpii/android/
+    cp -R $android_gpii_dir/tests ./gpii/android/
     cp -R $universal ./gpii/node_modules/
     cp $android_gpii_dir/gpii.js ./gpii/android/
     tar czf gpii-android.tar.gz gpii
