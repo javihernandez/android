@@ -27,11 +27,14 @@ var testDefs = [
                 "com.android.settings.system": [
                     {
                         "settings": {
-                            "dim_screen": true,
-                            "haptic_feedback_enabled": true,
-                            "accelerometer_rotation": false,
-                            "user_rotation": 2,
-                            "screen_off_timeout": 10000
+                            "dim_screen": "1",
+                            "haptic_feedback_enabled": "1",
+                            "accelerometer_rotation": "0",
+                            "user_rotation": "2",
+                            "screen_off_timeout": "10000"
+                        },
+                        "options" : {
+                            "settingType": "System"
                         }
                     }
                 ]
@@ -40,7 +43,7 @@ var testDefs = [
                 "com.android.audioManager": [
                     {
                         "settings": {
-                            "STREAM_SYSTEM": 0.5
+                            "STREAM_SYSTEM": 0
                         }
                     }
                 ]
@@ -49,13 +52,13 @@ var testDefs = [
                 "com.android.persistentConfiguration": [
                     {
                         "settings": {
-                            "fontScale": 1.5,
-                            "locale": "en"
+                            "fontScale": "1.5"
                         }
                     }
                 ]
             }
-        }
+        },
+        processes: []
     }
 ];
 
