@@ -214,6 +214,7 @@ module.exports = function (grunt) {
         var androidNodeModules = __dirname + "/gpii/node_modules";
         grunt.task.run(["shell:copyToBuildFolder:" + androidNodeModules + ":gpii/android",
                         "shell:copyToBuildFolder:" + __dirname + "/gpii.js" + ":gpii/android",
+                        "shell:copyToBuildFolder:" + __dirname + "/gpii-pilots.js" + ":gpii/android",
                         "shell:copyToBuildFolder:" + __dirname + "/index.js" + ":gpii/android",
                         "shell:copyToBuildFolder:" + __dirname + "/package.json" + ":gpii/android",
                         "shell:copyToBuildFolder:" + __dirname + "/../node_modules" + ":gpii",

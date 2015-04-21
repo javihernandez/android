@@ -30,7 +30,7 @@
     <string name="gpii_controls_start">Arrancar</string>
     <string name="gpii_controls_stop">Parar</string>
     <string name="gpii_controls_kill">Forzar salida</string>
-    <string name="gpii_default_script_uri">/sdcard/gpii/android/gpii.js</string>
+    <string name="gpii_default_script_uri">/sdcard/gpii/android/gpii-pilots.js</string>
     <string name="gpii_logo_content">Logo delproyecto GPII</string>
     <string name="gpii_controls_update_status">Comprobar el estado</string>
 

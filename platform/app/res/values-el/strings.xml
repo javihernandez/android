@@ -30,7 +30,7 @@
     <string name="gpii_controls_start">Έναρξη</string>
     <string name="gpii_controls_stop">Διακοπή</string>
     <string name="gpii_controls_kill">Εξαναγκασμένο Κλείσιμο</string>
-    <string name="gpii_default_script_uri">/sdcard/gpii/android/gpii.js</string>
+    <string name="gpii_default_script_uri">/sdcard/gpii/android/gpii-pilots.js</string>
     <string name="gpii_logo_content">Λογότυπο GPII</string>
     <string name="gpii_controls_update_status">Έλεγχος κατάστασης</string>
 
